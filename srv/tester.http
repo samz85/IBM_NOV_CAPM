@@ -1,0 +1,83 @@
+###Service document
+http://localhost:4004/odata/v4/CatalogService
+ 
+###Service metadata document
+http://localhost:4004/odata/v4/CatalogService/$metadata
+ 
+###Get all the employee data
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+ 
+###Get all the employee data - ID, NameFirst, nameLast
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$select=ID,nameFirst,nameLast
+
+###Pagination - load data chunk by chunk
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$top=2&$skip=2
+ 
+###Filtering - search and filter data
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$filter=Currency_code eq 'EUR'
+ 
+###Pattern match search
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$filter=contains(nameFirst,'an')
+ 
+###Get Single employee data by Id
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C19B87FB
+ 
+###Count the records
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/$count
+ 
+###Sort data
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$orderby=nameFirst&$top=5
+ 
+###Insert data inside DB - POST operation
+POST http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+Content-Type: application/json
+ 
+{
+      "nameFirst": "Suman",
+      "nameMiddle": null,
+      "nameLast": "Das Biswas",
+      "nameInitials": null,
+      "sex": "M",
+      "language": "E",
+      "phoneNumber": null,
+      "email": "suman.dasbiswas@gmail.com",
+      "loginName": "RONALDC",
+      "Currency_code": "USD",
+      "salaryAmount": 200,
+      "accountNumber": "3344556677",
+      "bankId": "26005886",
+      "bankName": "My Bank of New York"
+}
+ 
+###Get the data of created employee
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/feadc825-210e-4477-a009-e1bc55676eef
+ 
+ 
+###Update the data - Patch
+PATCH http://localhost:4004/odata/v4/CatalogService/EmployeeSet/669c77ed-ea0d-4416-acb1-f962c1c78d5a
+Content-Type: application/json
+ 
+{
+    "salaryAmount": 100000
+}
+ 
+###Remove data - DELETE
+DELETE http://localhost:4004/odata/v4/CatalogService/EmployeeSet/feadc825-210e-4477-a009-e1bc55676eef
+
+###Get All Po
+http://localhost:4004/odata/v4/CatalogService/POs
+ 
+###Get Single Order by Id
+http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC32052
+ 
+###Association - get the items correspoding for single order
+http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC32052/Items
+ 
+###Association - get the header and item data together
+http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC32052?$expand=Items
+ 
+###Get data from cds view entity
+http://localhost:4004/odata/v4/CatalogService/CProductValuesView
+ 
+ 
+ 
